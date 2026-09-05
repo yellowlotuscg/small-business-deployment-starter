@@ -1,0 +1,15 @@
+# Python caches
+__pycache__/
+*.py[cod]
+
+# Local runtime data created by seeding and running the demo
+data/
+*.db
+*.db-wal
+*.db-shm
+
+# Local release snapshots created by scripts/release.sh
+releases/
+
+# OS noise
+.DS_Store

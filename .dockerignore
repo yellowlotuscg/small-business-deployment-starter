@@ -1,0 +1,9 @@
+.git
+.github
+docs
+tests
+data
+releases
+__pycache__
+*.pyc
+.DS_Store
