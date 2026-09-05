@@ -3,10 +3,15 @@
 Local Python unittest execution: 30 tests passed, including actual loopback HTTP
 requests, storage validation and backup/restore checks.
 
-Container build attempted but not verified: Docker Hub metadata retrieval for
-python:3.12-slim timed out. The image was not cached locally. No successful
-container run is claimed. The Dockerfile is supplied as a reference pending
-an environment with working registry access.
+Container build and stateless smoke test verified locally after an earlier
+Docker Hub timeout. Commands: `docker build -t yl-deployment-starter:proof .`,
+`docker run -d --name yl-proof-acceptance --publish 127.0.0.1:18091:8080 yl-deployment-starter:proof`,
+and `docker exec yl-proof-acceptance python3 scripts/healthcheck.py`.
+The build completed; the healthcheck returned `healthy: stateless` with exit 0.
+HTTP GET `/health`, `/api/items` and `/api/summary` returned 200. Health reported
+memory storage and stateless mode; the fresh instance had no items or orders.
+The test container was stopped afterward. This verifies the local image and
+basic read endpoints, not cloud deployment, mounted persistence or load handling.
 
 AWS ECS, GCP Cloud Run and Azure Container Apps paths: documented references,
 not live deployments. No cloud resources were created. This is intentional
